@@ -1,4 +1,4 @@
-BUSCAMINAS: Sara Corrales Santos
+BUSCAMINAS:Sara Corrales Santos
 =========================
 
 En este programa se encuentra la base para el Buscaminas de Desarrollo de intefaces (DAM2).
