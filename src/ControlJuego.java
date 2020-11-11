@@ -22,9 +22,11 @@ public class ControlJuego {
 	public ControlJuego() {
 		//Creamos el tablero:
 		tablero = new int[LADO_TABLERO][LADO_TABLERO];
-		
 		//Inicializamos una nueva partida
 		inicializarPartida();
+		//Para probar
+		depurarTablero();
+
 	}
 	
 	
@@ -36,9 +38,26 @@ public class ControlJuego {
 	public void inicializarPartida(){
 
 		//TODO: Repartir minas e inicializar puntaci�n. Si hubiese un tablero anterior, lo pongo todo a cero para inicializarlo.
-		
-		
-		
+		//Poner todas las posiciones a 0
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				tablero[i][j] = 0;
+			}
+		}
+		//Poner la puntuación a 0
+		puntuacion = 0;
+		//Colocar las minas: Mientras queden minas por colocar se busca una posicion el el tablero sin mina y se coloca una mina
+		int randomI, randomJ, contadorMinas = 0;
+		while (contadorMinas < MINAS_INICIALES) {
+			randomI = (int) (Math.random() * LADO_TABLERO);
+			randomJ = (int) (Math.random() * LADO_TABLERO);
+
+			if (tablero[randomI][randomJ] != MINA) {
+				tablero[randomI][randomJ] = MINA;
+				contadorMinas++;
+			}
+		}
+
 		//Al final del m�todo hay que guardar el n�mero de minas para las casillas que no son mina:
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
@@ -58,7 +77,21 @@ public class ControlJuego {
 	 * @return : El número de minas que hay alrededor de la casilla [i][j]
 	 **/
 	private int calculoMinasAdjuntas(int i, int j){
-		return 0;
+		int iIncial = Math.max(0, i-1);
+		int iFinal = Math.min(LADO_TABLERO-1, i+1);
+		int jInicial = Math.max(0, j-1);
+		int jFinal = Math.min(LADO_TABLERO-1, j+1);
+		int nMinas = 0;
+
+		for (int vertical = iIncial; vertical < iFinal; vertical++) {
+			for (int horizontal = jInicial; horizontal < jFinal; horizontal++) {
+				if (tablero[vertical][horizontal]== MINA) {
+					nMinas++;
+				}
+			}
+		}
+		
+		return nMinas;
 	}
 	
 	/**
