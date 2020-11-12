@@ -143,6 +143,13 @@ public class VentanaPrincipal {
 	 */
 	public void inicializarListeners(){
 		//TODO
+		//dar listener para que se abran casillas
+		for (int i = 0; i < botonesJuego.length; i++) {
+			for (int j = 0; j < botonesJuego[i].length; j++) {
+				//TODO: añadir el acionBoton
+			}
+		}
+
 	}
 	
 	
@@ -160,6 +167,24 @@ public class VentanaPrincipal {
 	 */
 	public void mostrarNumMinasAlrededor(int i , int j) {
 		//TODO
+		//seleccionar el Jpanel[i][j] correspondiente
+
+
+		//elminar todos los componentes // Buscar en internet
+		panelesJuego[i][j].remove(botonesJuego[i][j]);
+
+		//Añadimos un Jlabel centrado y no editable con el numero de minas alrdedor
+		JLabel JLnMinas = new JLabel(""+juego.getMinasAlrededor(i, j));
+		panelesJuego[i][j].add(JLnMinas);
+		//el numero de minas se saca de controJuego (getMinasAlrededor)
+
+		for (int k = 0; k < correspondenciaColores.length; k++) {
+			if (k == juego.getMinasAlrededor(i, j)) {
+				JLnMinas.setForeground(correspondenciaColores[k]);
+			}
+		}
+		
+
 	}
 	
 	
