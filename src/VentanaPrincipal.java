@@ -173,14 +173,14 @@ public class VentanaPrincipal {
 	public void mostrarNumMinasAlrededor(int i , int j) {
 		//TODO
 		//seleccionar el Jpanel[i][j] correspondiente
-
-
 		//elminar todos los componentes // Buscar en internet
 		panelesJuego[i][j].remove(botonesJuego[i][j]);
 
 		//Añadimos un Jlabel centrado y no editable con el numero de minas alrdedor
-		JLabel JLnMinas = new JLabel(""+juego.getMinasAlrededor(i, j));
 		
+		JLabel JLnMinas = new JLabel();
+		JLnMinas.setText(""+juego.getMinasAlrededor(i, j));
+
 		//el numero de minas se saca de controJuego (getMinasAlrededor)
 
 		for (int k = 0; k < correspondenciaColores.length; k++) {
@@ -189,7 +189,7 @@ public class VentanaPrincipal {
 			}
 		}
 		panelesJuego[i][j].add(JLnMinas);
-
+		refrescarPantalla();
 	}
 	
 	
