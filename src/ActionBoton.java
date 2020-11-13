@@ -28,7 +28,7 @@ public class ActionBoton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		//TODO: seguir con el comportamiento de los botones.
 			if (ventanaPrincipal.juego.abrirCasilla(i, j)) {
-				
+				ventanaPrincipal.mostrarNumMinasAlrededor(i, j);
 			}
 
 		
