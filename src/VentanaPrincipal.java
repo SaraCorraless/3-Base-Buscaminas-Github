@@ -233,7 +233,7 @@ public class VentanaPrincipal {
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
 		//TODO: preguntar por esta condición
-		if (!porExplosion) {
+		if (porExplosion) {
 			//JOptionPane.showConfirmDialog(ventana, "Ha explotado una mina, fin del juego.", "Fin del juego", JOptionPane.YES_OPTION);
 			JOptionPane.showMessageDialog(ventana, "Ha explotado una mina, fin del juego.");
 			
@@ -278,11 +278,11 @@ public class VentanaPrincipal {
 
 	public void esMina(int i, int j){
 		panelesJuego[i][j].remove(botonesJuego[i][j]);
-		ImageIcon mina = new ImageIcon(getClass().getResource("mina.png"));
+		//ImageIcon mina = new ImageIcon(getClass().getResource("mina.png"));
 		JLabel iconoMina = new JLabel();
 		//ImageIcon icono = new ImageIcon(mina.getImage().getScaledInstance(iconoMina.getWidth(), iconoMina.getHeight(), Image.SCALE_DEFAULT));
 		iconoMina.setHorizontalAlignment(SwingConstants.CENTER);
-		iconoMina.setIcon(mina);
+		//iconoMina.setIcon(mina);
 		panelesJuego[i][j].add(iconoMina);
 		refrescarPantalla();
 	}
@@ -291,7 +291,7 @@ public class VentanaPrincipal {
 	/* public void sonido(){
 		Clip sonidoBomba = AudioSystem.getClip();
 		AudioClip bomba = java.applet.Applet.newAudioClip("explosion.mp3");
-	} */
+	} */ 
 
 
 	/**

@@ -30,19 +30,22 @@ public class ActionBoton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO: seguir con el comportamiento de los botones.
 		if (ventanaPrincipal.getJuego().abrirCasilla(i, j)) {
-			/* if (ventanaPrincipal.getJuego().esFinJuego()) {
-				ventanaPrincipal.mostrarFinJuego(ventanaPrincipal.getJuego().esFinJuego());
-			} else {
-				ventanaPrincipal.mostrarFinJuego(ventanaPrincipal.getJuego().esFinJuego());
-			} */
+			/*
+			 * if (ventanaPrincipal.getJuego().esFinJuego()) {
+			 * ventanaPrincipal.mostrarFinJuego(ventanaPrincipal.getJuego().esFinJuego()); }
+			 * else {
+			 * ventanaPrincipal.mostrarFinJuego(ventanaPrincipal.getJuego().esFinJuego()); }
+			 */
 			ventanaPrincipal.mostrarNumMinasAlrededor(i, j);
 			ventanaPrincipal.actualizarPuntuacion();
+			if (ventanaPrincipal.getJuego().esFinJuego()) {
+				ventanaPrincipal.mostrarFinJuego(!ventanaPrincipal.getJuego().esFinJuego());
+			}
 		} else {
 			ventanaPrincipal.esMina(i, j);
-			ventanaPrincipal.mostrarFinJuego(ventanaPrincipal.getJuego().abrirCasilla(i, j));
-			} 
+			ventanaPrincipal.mostrarFinJuego(!ventanaPrincipal.getJuego().esFinJuego());
+		}
 
-		
 	}
 
 }
