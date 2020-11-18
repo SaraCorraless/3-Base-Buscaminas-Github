@@ -1,10 +1,15 @@
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.sound.sampled.AudioSystem;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -155,6 +160,34 @@ public class VentanaPrincipal {
 			}
 		}
 
+		botonEmpezar.addActionListener((e)->{
+			
+			panelJuego.removeAll();
+			panelJuego.revalidate();
+			panelJuego.repaint();
+
+			for (int i = 0; i < botonesJuego.length; i++) {
+				for (int j = 0; j < botonesJuego[i].length; j++) {
+					panelesJuego[i][j] = new JPanel();
+					panelesJuego[i][j].setLayout(new GridLayout(1, 1));
+					panelJuego.add(panelesJuego[i][j]);
+
+					botonesJuego[i][j] = new JButton("-");
+					panelesJuego[i][j].add(botonesJuego[i][j]);
+					ActionBoton actionBoton = new ActionBoton(this, i, j);
+					botonesJuego[i][j].addActionListener((l) -> {
+						actionBoton.actionPerformed(l);
+					});
+				}
+			}
+			
+			getJuego().inicializarPartida();
+			actualizarPuntuacion();
+			refrescarPantalla();
+			getJuego().depurarTablero();
+			
+		});
+
 	}
 	
 	
@@ -179,8 +212,8 @@ public class VentanaPrincipal {
 		//Añadimos un Jlabel centrado y no editable con el numero de minas alrdedor
 		
 		JLabel JLnMinas = new JLabel();
-		JLnMinas.setText(""+juego.getMinasAlrededor(i, j));
-
+		JLnMinas.setText(""+juego.getMinasAlrededor(i, j) );
+		JLnMinas.setHorizontalAlignment(SwingConstants.CENTER);
 		//el numero de minas se saca de controJuego (getMinasAlrededor)
 
 		for (int k = 0; k < correspondenciaColores.length; k++) {
@@ -199,7 +232,23 @@ public class VentanaPrincipal {
 	 * @post : Todos los botones se desactivan excepto el de volver a iniciar el juego.
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
-		//TODO
+		//TODO: preguntar por esta condición
+		if (!porExplosion) {
+			//JOptionPane.showConfirmDialog(ventana, "Ha explotado una mina, fin del juego.", "Fin del juego", JOptionPane.YES_OPTION);
+			JOptionPane.showMessageDialog(ventana, "Ha explotado una mina, fin del juego.");
+			
+		} else {
+			//JOptionPane.showConfirmDialog(ventana, "Has conseguido evitar las minas, fin del juego.", "Fin del juego", JOptionPane.YES_OPTION);
+			JOptionPane.showMessageDialog(ventana, "Has conseguido evitar las minas, fin del juego.");
+			
+		}
+
+		for (int i = 0; i < botonesJuego.length; i++) {
+			for (int j = 0; j < botonesJuego[i].length; j++) {
+				botonesJuego[i][j].setEnabled(false);
+				refrescarPantalla();
+			}
+		}
 	}
 
 	/**
@@ -207,6 +256,8 @@ public class VentanaPrincipal {
 	 */
 	public void actualizarPuntuacion() {
 		//TODO
+		pantallaPuntuacion.setText(Integer.toString(getJuego().getPuntuacion()));
+
 	}
 	
 	/**
@@ -224,6 +275,24 @@ public class VentanaPrincipal {
 	public ControlJuego getJuego() {
 		return juego;
 	}
+
+	public void esMina(int i, int j){
+		panelesJuego[i][j].remove(botonesJuego[i][j]);
+		ImageIcon mina = new ImageIcon(getClass().getResource("mina.png"));
+		JLabel iconoMina = new JLabel();
+		//ImageIcon icono = new ImageIcon(mina.getImage().getScaledInstance(iconoMina.getWidth(), iconoMina.getHeight(), Image.SCALE_DEFAULT));
+		iconoMina.setHorizontalAlignment(SwingConstants.CENTER);
+		iconoMina.setIcon(mina);
+		panelesJuego[i][j].add(iconoMina);
+		refrescarPantalla();
+	}
+
+	//TODO: Buscar información
+	/* public void sonido(){
+		Clip sonidoBomba = AudioSystem.getClip();
+		AudioClip bomba = java.applet.Applet.newAudioClip("explosion.mp3");
+	} */
+
 
 	/**
 	 * Método para inicializar el programa

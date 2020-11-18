@@ -86,7 +86,7 @@ public class ControlJuego {
 
 		for (int vertical = iIncial; vertical <= iFinal; vertical++) {
 			for (int horizontal = jInicial; horizontal <= jFinal; horizontal++) {
-				if (vertical >= 0 && vertical < LADO_TABLERO && horizontal > 0 && horizontal < LADO_TABLERO) {
+				if (vertical >= 0 && vertical < LADO_TABLERO && horizontal >= 0 && horizontal < LADO_TABLERO) {
 					if (tablero[vertical][horizontal] == MINA) {
 						nMinas++;
 					}
@@ -108,6 +108,7 @@ public class ControlJuego {
 	public boolean abrirCasilla(int i, int j){
 		boolean abrirC = false;
 		if (tablero[i][j] != MINA) {
+			puntuacion++;
 			abrirC = true;
 		}
 		return abrirC;
@@ -120,9 +121,11 @@ public class ControlJuego {
 	 * @return Devuelve verdadero si se han abierto todas las celdas que no son minas.
 	 **/
 	public boolean esFinJuego(){
-		boolean fin = false;
+		boolean fin;
 		if (puntuacion == ((LADO_TABLERO*LADO_TABLERO)-MINAS_INICIALES)) {
 			fin = true;
+		} else{
+			fin = false;
 		}
 		return fin;
 	}
