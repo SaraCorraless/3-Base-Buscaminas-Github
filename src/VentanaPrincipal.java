@@ -309,19 +309,17 @@ public class VentanaPrincipal {
 		} */
 
 		try {
-			
+			FileInputStream fis =  new FileInputStream(new File("explosion.mp3"));
 			Player player;
-			BufferedInputStream bis = new BufferedInputStream( new FileInputStream(new File("explosion.mp3")));
+			BufferedInputStream bis = new BufferedInputStream(fis);
 			player = new Player(bis);
 			player.play();
-			bis.close();
+			/* bis.close(); */
 		} catch (JavaLayerException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException f){
 			f.printStackTrace();
-		}
-
-
+		} 
 
 	} 
 
