@@ -6,6 +6,10 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 import javax.sound.sampled.AudioSystem;
 import javax.swing.BorderFactory;
@@ -17,6 +21,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 /**
  * Ventana principal del Buscaminas
@@ -278,20 +285,45 @@ public class VentanaPrincipal {
 
 	public void esMina(int i, int j){
 		panelesJuego[i][j].remove(botonesJuego[i][j]);
-		//ImageIcon mina = new ImageIcon(getClass().getResource("mina.png"));
+		ImageIcon mina = new ImageIcon(getClass().getResource("mina.png"));
 		JLabel iconoMina = new JLabel();
 		//ImageIcon icono = new ImageIcon(mina.getImage().getScaledInstance(iconoMina.getWidth(), iconoMina.getHeight(), Image.SCALE_DEFAULT));
 		iconoMina.setHorizontalAlignment(SwingConstants.CENTER);
-		//iconoMina.setIcon(mina);
+		iconoMina.setIcon(mina);
 		panelesJuego[i][j].add(iconoMina);
 		refrescarPantalla();
 	}
 
 	//TODO: Buscar información
-	/* public void sonido(){
-		Clip sonidoBomba = AudioSystem.getClip();
-		AudioClip bomba = java.applet.Applet.newAudioClip("explosion.mp3");
-	} */ 
+	public void sonido()/* throws FileNotFoundException, JavaLayerException */{
+		//Clip sonidoBomba = AudioSystem.getClip();
+		/* Player apl = new Player(new FileInputStream("explosion.mp3"));
+		apl.play(); */
+
+		/* try {
+			new JFXPanel();
+			String pon = new File("explosion.mp3").toURI().toString();
+			new MediaPlayer(new Media(pon)).play();
+		} catch (Exception e) {
+			//TODO: handle exception
+		} */
+
+		try {
+			
+			Player player;
+			BufferedInputStream bis = new BufferedInputStream( new FileInputStream(new File("explosion.mp3")));
+			player = new Player(bis);
+			player.play();
+			bis.close();
+		} catch (JavaLayerException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException f){
+			f.printStackTrace();
+		}
+
+
+
+	} 
 
 
 	/**
