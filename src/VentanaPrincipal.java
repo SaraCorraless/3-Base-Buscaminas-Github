@@ -16,9 +16,17 @@ import javax.swing.SwingConstants;
 import javazoom.jl.decoder.JavaLayerException;
 
 /**
- * Ventana principal del Buscaminas
+ * Clase que genera la interfaz del juego, no se encarga de la jugabilidad del buscaminas.
+ * Para hacerla visible usameo el método {@link inicializar()} que tiene el siguiente código.
+ * {@code ventana.setVisible(true);
+		inicializarComponentes();
+		inicializarListeners();}
  * 
- * @author Sara Corrales Santos
+ * @author jesusredondogarcia
+ * @version 1.0
+ * @since 1.0
+ * @see ControlJuego
+ * 
  */
 public class VentanaPrincipal {
 
@@ -143,6 +151,7 @@ public class VentanaPrincipal {
 	/**
 	 * Método que inicializa todos los lísteners que necesita inicialmente el
 	 * programa
+	 * @author Sara Corrales Santos
 	 */
 	public void inicializarListeners() {
 		// Se recorren todos los botones del tablero
@@ -153,7 +162,6 @@ public class VentanaPrincipal {
 				botonesJuego[i][j].addActionListener((e) -> {
 					actionBoton.actionPerformed(e);
 				});
-
 			}
 		}
 		// Se inicia el listener del botón "GO"
@@ -182,7 +190,6 @@ public class VentanaPrincipal {
 			getJuego().depurarTablero();
 
 		});
-
 	}
 
 	/**
@@ -192,6 +199,7 @@ public class VentanaPrincipal {
 	 * la siguiente correspondecia (consultar la variable correspondeciaColor): - 0
 	 * : negro - 1 : cyan - 2 : verde - 3 : naranja - 4 ó más : rojo
 	 * 
+	 * @author Sara Corrales Santos
 	 * @param i: posición vertical de la celda.
 	 * @param j: posición horizontal de la celda.
 	 */
@@ -224,6 +232,8 @@ public class VentanaPrincipal {
 	 *                     todas (false)
 	 * @post : Todos los botones se desactivan excepto el de volver a iniciar el
 	 *       juego.
+	 * 
+	 * @author Sara Corrales Santos
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
 		if (porExplosion) {
@@ -249,6 +259,7 @@ public class VentanaPrincipal {
 
 	/**
 	 * Método que muestra la puntuación por pantalla.
+	 * @author Sara Corrales Santos
 	 */
 	public void actualizarPuntuacion() {
 		pantallaPuntuacion.setText(Integer.toString(getJuego().getPuntuacion()));
@@ -277,6 +288,7 @@ public class VentanaPrincipal {
 	 * mina con la imagen de una mina, un borde negro y el fondo rojo y que lo añade
 	 * al panel donde estuviera el botón que se ha borrado.
 	 * 
+	 * @author Sara Corrales Santos
 	 * @param i
 	 * @param j
 	 */
@@ -296,6 +308,7 @@ public class VentanaPrincipal {
 	 * Método que inicia el hilo de la clase Explosion que reproduce el solido de la explosión
 	 * @throws FileNotFoundException
 	 * @throws JavaLayerException
+	 * @author Sara Corrales Santos
 	 */
 	public void sonido() throws FileNotFoundException, JavaLayerException {
 		try {

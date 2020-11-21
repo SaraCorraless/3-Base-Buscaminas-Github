@@ -31,6 +31,7 @@ public class ControlJuego {
 	 * @pre: La estructura tablero debe existir. 
 	 * @post: Al final el tablero se habrá inicializado con tantas minas como marque la variable MINAS_INICIALES. 
 	 * 			El resto de posiciones que no son minas guardan en el entero cuántas minas hay alrededor de la celda
+	 * @author Sara Corrales Santos
 	 */
 	public void inicializarPartida(){
 		//Poner todas las posiciones a 0
@@ -71,6 +72,8 @@ public class ControlJuego {
 	 * @param i: posición vertical de la casilla a rellenar
 	 * @param j: posición horizontal de la casilla a rellenar
 	 * @return : El número de minas que hay alrededor de la casilla [i][j]
+	 * 
+	 * @author Sara Corrales Santos
 	 **/
 	private int calculoMinasAdjuntas(int i, int j){
 		int iIncial = Math.max(0, i-1);
@@ -97,6 +100,7 @@ public class ControlJuego {
 	 * @param i: posición verticalmente de la casilla a abrir
 	 * @param j: posición horizontalmente de la casilla a abrir
 	 * @return : Verdadero si no ha explotado una mina. Falso en caso contrario.
+	 * @author Sara Corrales Santos
 	 */
 	public boolean abrirCasilla(int i, int j){
 		boolean abrirC = false;
@@ -112,6 +116,7 @@ public class ControlJuego {
 	/**
 	 * Método que checkea si se ha terminado el juego porque se han abierto todas las casillas.
 	 * @return Devuelve verdadero si se han abierto todas las celdas que no son minas.
+	 * @author Sara Corrales Santos
 	 **/
 	public boolean esFinJuego(){
 		boolean fin;
@@ -152,6 +157,7 @@ public class ControlJuego {
 	/**
 	 * Método que devuelve la puntuación actual
 	 * @return Un entero con la puntuación actual
+	 * @author Sara Corrales Santos
 	 */
 	public int getPuntuacion() {
 		return puntuacion;
