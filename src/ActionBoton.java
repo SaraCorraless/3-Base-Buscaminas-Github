@@ -1,10 +1,5 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-
-import javax.swing.ImageIcon;
-
-import javazoom.jl.decoder.JavaLayerException;
 
 /**
  * Clase que implementa el listener de los botones del Buscaminas. De alguna
@@ -18,13 +13,13 @@ import javazoom.jl.decoder.JavaLayerException;
 public class ActionBoton implements ActionListener {
 
 	private VentanaPrincipal ventanaPrincipal;
-	private int i;
-	private int j;
+	private int iV;
+	private int jV;
 
 	public ActionBoton(VentanaPrincipal ventanaPrincipal, int i, int j) {
 		this.ventanaPrincipal = ventanaPrincipal;
-		this.i = i;
-		this.j = j;
+		this.iV = i;
+		this.jV = j;
 	}
 
 	/**
@@ -32,25 +27,22 @@ public class ActionBoton implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO: seguir con el comportamiento de los botones.
-		if (ventanaPrincipal.getJuego().abrirCasilla(i, j)) {
-			/*
-			 * if (ventanaPrincipal.getJuego().esFinJuego()) {
-			 * ventanaPrincipal.mostrarFinJuego(ventanaPrincipal.getJuego().esFinJuego()); }
-			 * else {
-			 * ventanaPrincipal.mostrarFinJuego(ventanaPrincipal.getJuego().esFinJuego()); }
-			 */
-			ventanaPrincipal.mostrarNumMinasAlrededor(i, j);
+		if (ventanaPrincipal.getJuego().abrirCasilla(iV, jV)) {
+			ventanaPrincipal.mostrarNumMinasAlrededor(iV, jV);
 			ventanaPrincipal.actualizarPuntuacion();
 			if (ventanaPrincipal.getJuego().esFinJuego()) {
 				ventanaPrincipal.mostrarFinJuego(!ventanaPrincipal.getJuego().esFinJuego());
 			}
 		} else {
-			ventanaPrincipal.esMina(i, j);
 			ventanaPrincipal.mostrarFinJuego(!ventanaPrincipal.getJuego().esFinJuego());
-			
-				ventanaPrincipal.sonido();
-			
+
+			for (int i = 0; i < ventanaPrincipal.panelesJuego.length; i++) {
+				for (int j = 0; j < ventanaPrincipal.panelesJuego[i].length; j++) {
+					if (!ventanaPrincipal.getJuego().abrirCasilla(i, j)) {
+						ventanaPrincipal.esMina(i, j);
+					}
+				}
+			}
 		}
 
 	}

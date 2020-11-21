@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Clase gestora del tablero de juego.
@@ -29,15 +27,12 @@ public class ControlJuego {
 
 	}
 	
-	
 	/**Método para generar un nuevo tablero de partida:
 	 * @pre: La estructura tablero debe existir. 
 	 * @post: Al final el tablero se habrá inicializado con tantas minas como marque la variable MINAS_INICIALES. 
 	 * 			El resto de posiciones que no son minas guardan en el entero cuántas minas hay alrededor de la celda
 	 */
 	public void inicializarPartida(){
-
-		//TODO: Repartir minas e inicializar puntaci�n. Si hubiese un tablero anterior, lo pongo todo a cero para inicializarlo.
 		//Poner todas las posiciones a 0
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
@@ -45,8 +40,8 @@ public class ControlJuego {
 			}
 		}
 		//Poner la puntuación a 0
-		
 		puntuacion = 0;
+
 		//Colocar las minas: Mientras queden minas por colocar se busca una posicion el el tablero sin mina y se coloca una mina
 		int randomI, randomJ, contadorMinas = 0;
 		while (contadorMinas < MINAS_INICIALES) {
@@ -59,7 +54,7 @@ public class ControlJuego {
 			}
 		}
 
-		//Al final del m�todo hay que guardar el n�mero de minas para las casillas que no son mina:
+		//Al final del método hay que guardar el número de minas para las casillas que no son mina:
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 				if (tablero[i][j] != MINA){
@@ -91,10 +86,8 @@ public class ControlJuego {
 						nMinas++;
 					}
 				}
-
 			}
 		}
-		
 		return nMinas;
 	}
 	
