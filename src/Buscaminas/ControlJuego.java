@@ -1,4 +1,4 @@
-
+package Buscaminas;
 /**
  * Clase gestora del tablero de juego.
  * Guarda una matriz de enteros representado el tablero.
