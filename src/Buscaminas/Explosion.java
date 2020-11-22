@@ -2,9 +2,6 @@ package Buscaminas;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
@@ -27,9 +24,6 @@ public class Explosion {
      * @throws InterruptedException
      * @throws FileNotFoundException
      * @throws UnsupportedAudioFileException
-     * @throws IOException
-     * @throws LineUnavailableException
-     * @throws MalformedURLException
      */
     public static void reproducirExplosion() throws JavaLayerException, InterruptedException, FileNotFoundException {
         final Player explosion = new Player(new FileInputStream("src\\Buscaminas\\explosion.mp3"));
