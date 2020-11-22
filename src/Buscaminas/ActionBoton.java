@@ -38,7 +38,6 @@ public class ActionBoton implements ActionListener {
 			}
 		} else {
 			ventanaPrincipal.mostrarFinJuego(!ventanaPrincipal.getJuego().esFinJuego());
-
 			for (int i = 0; i < ventanaPrincipal.panelesJuego.length; i++) {
 				for (int j = 0; j < ventanaPrincipal.panelesJuego[i].length; j++) {
 					if (!ventanaPrincipal.getJuego().abrirCasilla(i, j)) {

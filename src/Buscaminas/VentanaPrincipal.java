@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.io.FileNotFoundException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,9 +17,9 @@ import javax.swing.SwingConstants;
 import javazoom.jl.decoder.JavaLayerException;
 
 /**
- * Clase que genera la interfaz del juego, no se encarga de la jugabilidad del buscaminas.
- * Para hacerla visible usameo el método {@link inicializar()} que tiene el siguiente código.
- * {@code ventana.setVisible(true);
+ * Clase que genera la interfaz del juego, no se encarga de la jugabilidad del
+ * buscaminas. Para hacerla visible usameo el método {@link inicializar()} que
+ * tiene el siguiente código. {@code ventana.setVisible(true);
 		inicializarComponentes();
 		inicializarListeners();}
  * 
@@ -151,6 +152,7 @@ public class VentanaPrincipal {
 	/**
 	 * Método que inicializa todos los lísteners que necesita inicialmente el
 	 * programa
+	 * 
 	 * @author Sara Corrales Santos
 	 */
 	public void inicializarListeners() {
@@ -235,7 +237,7 @@ public class VentanaPrincipal {
 	 * 
 	 * @author Sara Corrales Santos
 	 */
-	public void mostrarFinJuego(boolean porExplosion) {
+	public void mostrarFinJuego(boolean porExplosion){
 		if (porExplosion) {
 			try {
 				// Inicia un hilo con el solino de la explosión de la bomba
@@ -259,6 +261,7 @@ public class VentanaPrincipal {
 
 	/**
 	 * Método que muestra la puntuación por pantalla.
+	 * 
 	 * @author Sara Corrales Santos
 	 */
 	public void actualizarPuntuacion() {
@@ -305,12 +308,15 @@ public class VentanaPrincipal {
 	}
 
 	/**
-	 * Método que inicia el hilo de la clase Explosion que reproduce el solido de la explosión
-	 * @throws FileNotFoundException
+	 * Método que inicia el hilo de la clase Explosion que reproduce el solido de la
+	 * explosión
+	 * 
 	 * @throws JavaLayerException
 	 * @author Sara Corrales Santos
+	 * @throws FileNotFoundException
+	 * @throws UnsupportedAudioFileException
 	 */
-	public void sonido() throws FileNotFoundException, JavaLayerException {
+	public void sonido() throws JavaLayerException, FileNotFoundException {
 		try {
 			Explosion.reproducirExplosion();
 		} catch (InterruptedException e) {
