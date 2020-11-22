@@ -1,10 +1,10 @@
 package Buscaminas;
+
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.io.FileNotFoundException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -237,7 +237,7 @@ public class VentanaPrincipal {
 	 * 
 	 * @author Sara Corrales Santos
 	 */
-	public void mostrarFinJuego(boolean porExplosion){
+	public void mostrarFinJuego(boolean porExplosion) {
 		if (porExplosion) {
 			try {
 				// Inicia un hilo con el solino de la explosión de la bomba
@@ -247,7 +247,7 @@ public class VentanaPrincipal {
 			}
 			JOptionPane.showMessageDialog(ventana, "Ha explotado una mina, fin del juego.");
 		} else {
-			JOptionPane.showMessageDialog(ventana, "Has conseguido evitar las minas, fin del juego.");
+			JOptionPane.showMessageDialog(ventana, "Enhorabuena!!\nHas conseguido evitar las minas, fin del juego.");
 		}
 
 		// se recorren los botones del tablero y se desactivan
@@ -314,9 +314,8 @@ public class VentanaPrincipal {
 	 * @throws JavaLayerException
 	 * @author Sara Corrales Santos
 	 * @throws FileNotFoundException
-	 * @throws UnsupportedAudioFileException
 	 */
-	public void sonido() throws JavaLayerException, FileNotFoundException {
+	public void sonido() throws FileNotFoundException, JavaLayerException {
 		try {
 			Explosion.reproducirExplosion();
 		} catch (InterruptedException e) {

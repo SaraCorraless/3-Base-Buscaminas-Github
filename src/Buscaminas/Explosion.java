@@ -2,7 +2,6 @@ package Buscaminas;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
@@ -23,7 +22,6 @@ public class Explosion {
      * @throws JavaLayerException
      * @throws InterruptedException
      * @throws FileNotFoundException
-     * @throws UnsupportedAudioFileException
      */
     public static void reproducirExplosion() throws JavaLayerException, InterruptedException, FileNotFoundException {
         final Player explosion = new Player(new FileInputStream("src\\Buscaminas\\explosion.mp3"));
@@ -40,5 +38,7 @@ public class Explosion {
                 }
             }
         }.start();
+        Thread.sleep(6000);
+        explosion.close();
     }
 }
